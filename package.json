@@ -11,11 +11,13 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-csso": "^3.0.1",
     "gulp-htmlmin": "^4.0.0",
-    "gulp-minify": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
     "jest": "^23.4.1"
   },
   "repository": {
