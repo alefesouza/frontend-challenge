@@ -1,0 +1,35 @@
+{
+  "name": "getninjas-challenge",
+  "version": "1.0.0",
+  "description": "Front-end challenge for GetNinjas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-minify": "^3.1.0",
+    "jest": "^23.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alefesouza/getninjas-challenge.git"
+  },
+  "keywords": [
+    "challenge",
+    "interview"
+  ],
+  "author": "Alefe Souza <contact@alefesouza.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alefesouza/getninjas-challenge/issues"
+  },
+  "homepage": "https://github.com/alefesouza/getninjas-challenge#readme"
+}
