@@ -1,0 +1,136 @@
+body {
+  font-family: Arial;
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  background: #1393f6;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.header__title {
+  font-size: 24px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.required:after {
+  color: #ff0000;
+  content: '*';
+}
+
+.form__tab {
+  padding: 15px;
+}
+
+.form__box {
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 7px;
+  margin: 16px auto;
+}
+
+.form__box fieldset {
+  border: 0;
+}
+
+.form__group {
+  margin-top: 10px;
+}
+
+.form__label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form__control {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #1393f6;
+  border-radius: 7px;
+  margin: 5px 0px;
+  font-size: 16px;
+  padding-left: 5px;
+  background: #eff4fa;
+  box-sizing: border-box;
+  transition: all 500ms;
+  outline: none;
+}
+
+.form__control:hover {
+  background: white;
+  box-shadow: 0 0 1px 1px rgba(19, 147, 246, .5);
+}
+
+textarea.form__control {
+  padding: 13px 11px;
+  min-height: 68px;
+}
+
+.form__submit {
+  width: 100%;
+  height: 48px;
+  background-color: #1393f6;
+  color: #fff;
+  background: blue;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 0;
+  margin-top: 7px;
+}
+
+.form__tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 0px;
+  list-style: none;
+  padding-left: 0px;
+  background-color: #dddddd;
+}
+
+.form__tabs-item {
+  text-align: center;
+  height: 50px;
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.form__tabs-item--active {
+  background-color: #ffffff;
+}
+
+li:nth-child(1).form__tabs-item--active {
+  border-bottom-right-radius: 7px;
+}
+
+li:nth-child(2).form__tabs-item--active {
+  border-bottom-left-radius: 7px;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, .15);
+  padding: 5px 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media(min-width: 1024px) {
+  .container {
+    max-width: 900px;
+  }
+}

@@ -10,22 +10,33 @@
 
 <body>
   <header>
-    <h1>Formulário de pedidos</h1>
+    <div class="container">
+      <div class="header__title">Formulário de pedidos</div>
+    </div>
   </header>
 
-  <main class="container">
-    <h1>Formulário de pedidos</h1>
+  <main class="container form__box">
+    <div class="form__tab">
+      <h1>Seu pedido</h1>
 
-    <div id="form-body">
-      <form id="main-form">
-
-        <input type="submit" value="Enviar">
+      <form>
+        <fieldset id="request-fields">
+        </fieldset>
       </form>
     </div>
+    <ol class="form__tabs">
+      <li class="form__tabs-item form__tabs-item--active">
+        1. Seu pedido
+      </li>
+      <li class="form__tabs-item">
+        2. Seus Dados
+      </li>
+    </ol>
   </main>
 
   <footer>
-
+    &copy; 2018
+    <a href="https://alefesouza.com">Alefe Souza</a>
   </footer>
 
   <script src="js/index.js"></script>
