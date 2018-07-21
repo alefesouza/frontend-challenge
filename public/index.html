@@ -16,19 +16,24 @@
   </header>
 
   <main class="container form__box">
-    <div class="form__tab">
-      <h1>Seu pedido</h1>
+    <div class="form__holder">
+      <h1 id="form-title">Seu pedido</h1>
 
-      <form>
+      <form id="request-form">
         <fieldset id="request-fields">
+        </fieldset>
+      </form>
+
+      <form id="user-form">
+        <fieldset id="user-fields">
         </fieldset>
       </form>
     </div>
     <ol class="form__tabs">
-      <li class="form__tabs-item form__tabs-item--active">
+      <li id="forms-step-1" class="form__tabs-item form__tabs-item--active">
         1. Seu pedido
       </li>
-      <li class="form__tabs-item">
+      <li id="forms-step-2" class="form__tabs-item">
         2. Seus Dados
       </li>
     </ol>
