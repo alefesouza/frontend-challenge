@@ -14,12 +14,17 @@
     "babel-core": "^6.26.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-csso": "^3.0.1",
     "gulp-htmlmin": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
-    "jest": "^23.4.1"
+    "jest": "^23.4.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "repository": {
     "type": "git",
