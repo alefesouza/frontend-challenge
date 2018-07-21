@@ -68,7 +68,9 @@ const validateRequiredFields = (fieldsetId) => {
   document.querySelectorAll(fieldsetId + ' [required]').forEach((e) => {
     // Get the style object pointer address
     // instead of the display directly to be able to change it
-    let { style: formMessageStyle } = document.querySelector(
+    let {
+      style: formMessageStyle
+    } = document.querySelector(
       `.form__message[for='${e.name}']`,
     );
 
@@ -133,9 +135,12 @@ const createFieldsFromJson = (prev, curr) => {
   return prev + html;
 };
 
-(async () => {
+const browserInit = async () => {
   const response = await fetch('http://localhost:3000/fields');
-  const { request_fields, user_fields } = (await response.json())._embedded;
+  const {
+    request_fields,
+    user_fields
+  } = (await response.json())._embedded;
 
   const requestFieldsElement = document.getElementById('request-fields');
   const userFieldsElement = document.getElementById('user-fields');
@@ -171,4 +176,15 @@ const createFieldsFromJson = (prev, curr) => {
 
   document.getElementById('request-fields').appendChild(requestSubmit);
   document.getElementById('user-fields').appendChild(userSubmit);
-})();
+};
+
+if (typeof process !== 'undefined') {
+  module.exports = {
+    createSelectElement,
+    createTextAreaElement,
+    createInputElement,
+    createFieldsFromJson
+  };
+} else {
+  window.onload = browserInit;
+}

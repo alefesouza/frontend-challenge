@@ -14,6 +14,7 @@ const paths = {
   html: 'public/**/*.html',
   css: 'public/css/**/*.css',
   js: 'public/js/**/*.js',
+  jsTest: 'test/public/js/**/*.js',
   jsEntry: 'public/js/index.js',
 };
 
@@ -31,6 +32,7 @@ gulp.task('scripts', function () {
   const b = browserify({
     entries: paths.jsEntry,
     debug: true,
+    detectGlobals: false,
     transform: [babelify.configure({
       presets: ['env'],
       plugins: ['transform-runtime']
