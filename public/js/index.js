@@ -56,15 +56,29 @@ const createSubmitButton = (value, callback) => {
   return submitButton;
 };
 
+/**
+ * This code will repeat inside the next function body,
+ * so I created this function to better readability
+ */
+const showFormMessage = (formMessage, message) => {
+  formMessage.textContent = message;
+
+  if (formMessage.style.display !== 'block') {
+    formMessage.style.display = 'block';
+  }
+};
+
 const validateRequiredFields = (fieldsetId) => {
   let isValid = true;
 
-  // I could do this but it will touch the DOM all the time...
-  // So I prefered to use some validation on the next algorithm
-  // to don't change the style if it's showing already
-  // [...document.getElementsByClassName('.form__message')].forEach((e) => {
-  //   e.style.display = 'none';
-  // });
+  /**
+   * I could do this but it will touch the DOM all the time...
+   * So I prefered to use some validation on the next algorithm
+   * to don't change the style if it's showing already
+   * [...document.getElementsByClassName('.form__message')].forEach((e) => {
+   *   e.style.display = 'none';
+   * });
+   */
 
   document.querySelectorAll(fieldsetId + ' [required], ' + fieldsetId + ' [pattern]').forEach((e) => {
     const formMessage = document.querySelector(
@@ -72,25 +86,17 @@ const validateRequiredFields = (fieldsetId) => {
     );
 
     if (e.required && e.value === '') {
-      formMessage.textContent = 'Este campo é obrigatório';
-
-      if (formMessage.style.display !== 'block') {
-        formMessage.style.display = 'block';
-      }
+      showFormMessage(formMessage, 'Este campo é obrigatório');
 
       isValid = false;
       return;
     }
 
     if (e.pattern) {
-      const regex = RegExp(e.pattern);
+      const regex = new RegExp(e.pattern);
 
       if (!regex.test(e.value)) {
-        if (formMessage.style.display !== 'block') {
-          formMessage.style.display = 'block';
-        }
-
-        formMessage.textContent = 'Valor inválido';
+        showFormMessage(formMessage, 'Valor inválido');
 
         isValid = false;
         return;
