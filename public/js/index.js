@@ -49,7 +49,7 @@ const createInputElement = (item, maxLength = 255, type = 'text', pattern = '') 
 const createSubmitButton = (value, callback) => {
   const submitButton = document.createElement('input');
   submitButton.type = 'submit';
-  submitButton.className = 'form__submit';
+  submitButton.className = 'form__button';
   submitButton.value = value;
   submitButton.onclick = callback;
 
@@ -149,7 +149,24 @@ const createFieldsFromJson = (prev, curr) => {
 };
 
 const browserInit = async () => {
-  const response = await fetch('http://localhost:3000/fields');
+  const requestForm = document.getElementById('request-form');
+  const errorMessage = document.getElementById('error-message');
+
+  if (errorMessage.style.display === 'block') {
+    requestForm.style.display = 'block';
+    errorMessage.style.display = 'none';
+  }
+
+  let response = null;
+
+  try {
+    response = await fetch('http://localhost:3000/fields');
+  } catch (e) {
+    requestForm.style.display = 'none';
+    errorMessage.style.display = 'block';
+    return;
+  }
+
   const {
     request_fields,
     user_fields
@@ -189,7 +206,7 @@ const browserInit = async () => {
 
     alert('Seu pedido foi enviado com sucesso!');
 
-    document.getElementById('request-form').reset();
+    requestForm.reset();
     document.getElementById('user-form').reset();
 
     document.getElementById('forms-step-1').classList.add(stepActiveClass);
@@ -211,5 +228,9 @@ if (typeof process !== 'undefined') {
     createFieldsFromJson
   };
 } else {
-  window.onload = browserInit;
+  window.onload = () => {
+    browserInit();
+
+    document.getElementById('try-again').onclick = browserInit;
+  };
 }

@@ -41,7 +41,8 @@ header {
   border: 0;
 }
 
-#user-fields {
+#user-fields,
+#error-message {
   display: none;
 }
 
@@ -78,7 +79,7 @@ textarea.form__control {
   min-height: 68px;
 }
 
-.form__submit {
+.form__button {
   background-color: #1393f6;
   border: 0;
   border-radius: 7px;
@@ -95,7 +96,7 @@ textarea.form__control {
   width: 100%;
 }
 
-.form__submit:hover {
+.form__button:hover {
   background-color: #1272d5;
 }
 

@@ -1,6 +1,6 @@
 # frontend-challenge
 
-This is the resolution for the [GetNinjas frontend-challenge](https://github.com/getninjas/frontend-challenge), it gets data from a Node.js server and render the form fields on the DOM without any lib.
+This is my resolution for the [GetNinjas frontend-challenge](https://github.com/getninjas/frontend-challenge), it gets data from a Node.js server and render the form fields on the DOM without any lib.
 
 I really like the most recent EcmaScript features, so this project runs on the most recent browser versions (probably not Safari hahaha), but I left a Babel configuration on Gulp with task to minify the HTML, CSS and JS files to the dist/ folder, the resulting files will work on older browser too.
 

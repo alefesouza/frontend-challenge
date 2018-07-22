@@ -21,6 +21,7 @@
 
       <form id="request-form">
         <fieldset id="request-fields">
+          <span>Carregando...</span>
         </fieldset>
       </form>
 
@@ -28,6 +29,14 @@
         <fieldset id="user-fields">
         </fieldset>
       </form>
+
+      <div id="error-message">
+        <span>
+          Houve um erro ao receber os dados do formulário.
+        </span>
+
+        <button id="try-again" class="form__button">Tentar novamente</button>
+      </div>
     </div>
     <ol class="form__tabs">
       <li id="forms-step-1" class="form__tabs-item form__tabs-item--active">
