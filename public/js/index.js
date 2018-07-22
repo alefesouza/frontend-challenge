@@ -160,7 +160,7 @@ const browserInit = async () => {
   let response = null;
 
   try {
-    response = await fetch('http://localhost:3000/fields');
+    response = await fetch('https://getninjas-frontend-challenge.herokuapp.com/fields');
   } catch (e) {
     requestForm.style.display = 'none';
     errorMessage.style.display = 'block';
