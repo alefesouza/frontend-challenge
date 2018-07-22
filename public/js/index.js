@@ -66,14 +66,12 @@ const validateRequiredFields = (fieldsetId) => {
   //   e.style.display = 'none';
   // });
 
-  document.querySelectorAll(fieldsetId + ' [required]').forEach((e) => {
-    // Get the style object pointer address
-    // instead of the display directly to be able to change it
+  document.querySelectorAll(fieldsetId + ' [required], ' + fieldsetId + ' [pattern]').forEach((e) => {
     const formMessage = document.querySelector(
       `.form__message[for='${e.name}']`,
     );
 
-    if (e.value === '') {
+    if (e.required && e.value === '') {
       formMessage.textContent = 'Este campo é obrigatório';
 
       if (formMessage.style.display !== 'block') {
@@ -84,10 +82,14 @@ const validateRequiredFields = (fieldsetId) => {
       return;
     }
 
-    if (e.pattern !== '') {
+    if (e.pattern) {
       const regex = RegExp(e.pattern);
 
       if (!regex.test(e.value)) {
+        if (formMessage.style.display !== 'block') {
+          formMessage.style.display = 'block';
+        }
+
         formMessage.textContent = 'Valor inválido';
 
         isValid = false;
@@ -123,7 +125,6 @@ const createFieldsFromJson = (prev, curr) => {
       html += createInputElement(curr);
       break;
     case 'cep':
-      // Cannot use a mask lib...
       html += createInputElement(curr, 10, 'text', '\\d{5}-?\\d{3}');
       break;
     case 'email':
