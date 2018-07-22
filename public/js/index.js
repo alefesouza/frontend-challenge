@@ -33,7 +33,7 @@ const createTextAreaElement = (item) => {
   ></textarea>`;
 };
 
-const createInputElement = (item, maxLength = 255, type = 'text') => {
+const createInputElement = (item, maxLength = 255, type = 'text', pattern = '') => {
   return `<input
     type="${type}"
     class="form__control"
@@ -42,6 +42,7 @@ const createInputElement = (item, maxLength = 255, type = 'text') => {
     placeholder="${item.placeholder}"
     maxlength="${maxLength}"
     ${item.required ? 'required' : ''}
+    ${pattern !== '' ? 'pattern="' + pattern + '"' : ''}
   >`;
 };
 
@@ -68,23 +69,34 @@ const validateRequiredFields = (fieldsetId) => {
   document.querySelectorAll(fieldsetId + ' [required]').forEach((e) => {
     // Get the style object pointer address
     // instead of the display directly to be able to change it
-    let {
-      style: formMessageStyle
-    } = document.querySelector(
+    const formMessage = document.querySelector(
       `.form__message[for='${e.name}']`,
     );
 
     if (e.value === '') {
-      if (formMessageStyle.display !== 'block') {
-        formMessageStyle.display = 'block';
+      formMessage.textContent = 'Este campo é obrigatório';
+
+      if (formMessage.style.display !== 'block') {
+        formMessage.style.display = 'block';
       }
 
       isValid = false;
       return;
     }
 
-    if (formMessageStyle.display === 'block') {
-      formMessageStyle.display = 'none';
+    if (e.pattern !== '') {
+      const regex = RegExp(e.pattern);
+
+      if (!regex.test(e.value)) {
+        formMessage.textContent = 'Valor inválido';
+
+        isValid = false;
+        return;
+      }
+    }
+
+    if (formMessage.style.display === 'block') {
+      formMessage.style.display = 'none';
     }
   });
 
@@ -112,22 +124,23 @@ const createFieldsFromJson = (prev, curr) => {
       break;
     case 'cep':
       // Cannot use a mask lib...
-      html += createInputElement(curr, 9);
+      html += createInputElement(curr, 10, 'text', '\\d{5}-?\\d{3}');
       break;
     case 'email':
-      html += createInputElement(curr, 255, 'email');
+      html += createInputElement(curr, 255, 'email', '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$');
       break;
     case 'phone':
-      html += createInputElement(curr, 11, 'tel');
+      html += createInputElement(curr, 12, 'tel', '\\d{2}\\d{4,5}-?\\d{4}');
       break;
     default:
       return prev;
   }
 
-  if (curr.required) {
+  let hasValidation = /(cep|email|phone)/.test(curr.type);
+  if (curr.required || hasValidation) {
     html += `<span class="form__message" for="${
       curr.name
-    }">Este campo é obrigatório</span>`;
+    }"></span>`;
   }
 
   html += '</div>';
@@ -151,6 +164,8 @@ const browserInit = async () => {
   requestFieldsElement.innerHTML = requestFieldsChildren;
   userFieldsElement.innerHTML = userFieldsChildren;
 
+  const stepActiveClass = 'form__tabs-item--active';
+
   const requestSubmit = createSubmitButton('Buscar profissionais', (e) => {
     e.preventDefault();
 
@@ -161,7 +176,6 @@ const browserInit = async () => {
     requestFieldsElement.style.display = 'none';
     userFieldsElement.style.display = 'block';
 
-    const stepActiveClass = 'form__tabs-item--active';
     document.getElementById('forms-step-1').classList.remove(stepActiveClass);
     document.getElementById('forms-step-2').classList.add(stepActiveClass);
   });
@@ -172,6 +186,17 @@ const browserInit = async () => {
     if (!validateRequiredFields('#user-fields')) {
       return;
     }
+
+    alert('Seu pedido foi enviado com sucesso!');
+
+    document.getElementById('request-form').reset();
+    document.getElementById('user-form').reset();
+
+    document.getElementById('forms-step-1').classList.add(stepActiveClass);
+    document.getElementById('forms-step-2').classList.remove(stepActiveClass);
+
+    requestFieldsElement.style.display = 'block';
+    userFieldsElement.style.display = 'none';
   });
 
   document.getElementById('request-fields').appendChild(requestSubmit);

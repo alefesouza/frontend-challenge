@@ -58,7 +58,9 @@ describe('Test json to input conversion', () => {
       'required': true
     };
 
-    expect(index.createInputElement(field)).toEqual(validations.email);
+    const input = index.createInputElement(field, 255, 'email', '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$');
+
+    expect(input).toEqual(validations.email);
   });
 
   it('should return input tel element', () => {
@@ -70,7 +72,7 @@ describe('Test json to input conversion', () => {
       'required': true
     };
 
-    expect(index.createInputElement(field, 11, 'tel')).toEqual(validations.phone);
+    expect(index.createInputElement(field, 12, 'tel', '\\d{2}\\d{4,5}-?\\d{4}')).toEqual(validations.phone);
   });
 
   it('tests createFieldsFromJson functions', () => {

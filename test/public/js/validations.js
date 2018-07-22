@@ -22,16 +22,18 @@ const small_text = `<input
     placeholder=""
     maxlength="255"
     
+    
   >`;
 
 const email = `<input
-    type="text"
+    type="email"
     class="form__control"
     name="email"
     id="email"
     placeholder="Ex: nome@email.com"
     maxlength="255"
     required
+    pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"
   >`;
 
 const phone = `<input
@@ -40,8 +42,9 @@ const phone = `<input
     name="phone"
     id="phone"
     placeholder=""
-    maxlength="11"
+    maxlength="12"
     required
+    pattern="\\d{2}\\d{4,5}-?\\d{4}"
   >`;
 
 const allFields = `<div class="form__group">
@@ -56,7 +59,7 @@ const allFields = `<div class="form__group">
     id="Qual será o serviço?"
     required
   >
-    <option value>tipo de serviço</option><option value="Coloração">Coloração</option><option value="Corte">Corte</option><option value="Escova ">Escova </option><option value="Escova progressiva/definitiva">Escova progressiva/definitiva</option><option value="Luzes">Luzes</option><option value="Manicure">Manicure</option><option value="Pedicure">Pedicure</option><option value="Penteado">Penteado</option></select><span class="form__message" for="Qual será o serviço?">Este campo é obrigatório</span></div><div class="form__group">
+    <option value>tipo de serviço</option><option value="Coloração">Coloração</option><option value="Corte">Corte</option><option value="Escova ">Escova </option><option value="Escova progressiva/definitiva">Escova progressiva/definitiva</option><option value="Luzes">Luzes</option><option value="Manicure">Manicure</option><option value="Pedicure">Pedicure</option><option value="Penteado">Penteado</option></select><span class="form__message" for="Qual será o serviço?"></span></div><div class="form__group">
     <label
       for="Para quem será o serviço?"
       class="form__label "
@@ -94,7 +97,8 @@ const allFields = `<div class="form__group">
     placeholder="Ex: nome@email.com"
     maxlength="255"
     required
-  ><span class="form__message" for="email">Este campo é obrigatório</span></div><div class="form__group">
+    pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"
+  ><span class="form__message" for="email"></span></div><div class="form__group">
     <label
       for="phone"
       class="form__label  required"
@@ -106,9 +110,10 @@ const allFields = `<div class="form__group">
     name="phone"
     id="phone"
     placeholder=""
-    maxlength="11"
+    maxlength="12"
     required
-  ><span class="form__message" for="phone">Este campo é obrigatório</span></div>`;
+    pattern="\\d{2}\\d{4,5}-?\\d{4}"
+  ><span class="form__message" for="phone"></span></div>`;
 
 module.exports = {
   enumerable,
