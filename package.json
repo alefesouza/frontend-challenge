@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "gulp dist",
     "test": "jest"
   },
   "dependencies": {
